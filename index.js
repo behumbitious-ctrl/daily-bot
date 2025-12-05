@@ -1,7 +1,6 @@
-import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
-import cron from 'node-cron';
-import dotenv from 'dotenv';
-dotenv.config();
+const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+const cron = require('node-cron');
+require('dotenv').config();
 
 const client = new Client({
   intents: [
@@ -13,15 +12,15 @@ const client = new Client({
 });
 
 const TOKEN = process.env.TOKEN;
-const RAID_CHANNEL_ID = '1442462835866341467'; // 일일레이드 채널 ID
+const RAID_CHANNEL_ID = '1442462835866341467';  // 🔥 업데이트 완료
 
-// 출발 알림 메시지(간단)
+// 출발 알림 메시지
 const DEPARTURE_MESSAGE = '@everyone 🚀 곧 출발합니다! 준비해주세요!';
 
 client.once('ready', () => {
   console.log(`${client.user.tag} login success!`);
 
-  // ✔ 매일 오후 4시(16:00) 투표 알림
+  // 매일 오후 4시 투표 알림
   cron.schedule('0 16 * * *', async () => {
     try {
       const channel = await client.channels.fetch(RAID_CHANNEL_ID);
@@ -53,7 +52,7 @@ client.once('ready', () => {
     timezone: "Asia/Seoul"
   });
 
-  // ✔ 매일 오후 9시 50분(21:50) 출발 알림
+  // 매일 오후 9시 50분 출발 알림
   cron.schedule('50 21 * * *', async () => {
     try {
       const channel = await client.channels.fetch(RAID_CHANNEL_ID);
@@ -68,7 +67,7 @@ client.once('ready', () => {
   }, {
     timezone: "Asia/Seoul"
   });
-
+  
 });
 
 client.login(TOKEN);
