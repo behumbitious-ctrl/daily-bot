@@ -14,11 +14,23 @@ const TOKEN = process.env.TOKEN;
 client.once('ready', () => {
   console.log(`${client.user.tag} login success!`);
 
-  cron.schedule('0 22 * * *', () => {
+  // 🧪 테스트용: 오늘 00:20에 실행 (매일 0시 20분)
+  cron.schedule('20 0 * * *', async () => {
     const channel = client.channels.cache.get('1442138526790586452');
-    if (channel) {
-      channel.send('@everyone 📢 밤 10시 일일레이드 참석여부 알림! 확인해주세요 👇');
+    if (!channel) {
+      console.error('채널을 찾을 수 없습니다. 채널ID 확인 필요');
+      return;
     }
+
+    // 👍👎 투표 메시지 전송
+    const message = await channel.send(
+      '@everyone ⚔️ 오늘 **밤 10시 일일 레이드** 가실 분?\n\n' +
+      '👍 : 참여\n' +
+      '👎 : 불참'
+    );
+
+    await message.react('👍');
+    await message.react('👎');
   }, {
     timezone: "Asia/Seoul"
   });
