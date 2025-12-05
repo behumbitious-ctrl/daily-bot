@@ -15,7 +15,7 @@ client.once('ready', () => {
   console.log(`${client.user.tag} login success!`);
 
   // 🧪 테스트용: 오늘 00:20에 실행 (매일 0시 20분)
-  cron.schedule('20 0 * * *', async () => {
+  cron.schedule('30 0 * * *', async () => {
     const channel = client.channels.cache.get('1442462835866341467');
     if (!channel) {
       console.error('채널을 찾을 수 없습니다. 채널ID 확인 필요');
