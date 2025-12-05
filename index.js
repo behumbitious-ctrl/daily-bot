@@ -17,7 +17,7 @@ const client = new Client({
 });
 
 const TOKEN = process.env.TOKEN;
-const RAID_CHANNEL_ID = '1442138526790586452';
+const RAID_CHANNEL_ID = '1442462835866341467';
 let lastPollMessageId = null;
 
 async function updatePollEmbed(message) {
@@ -55,7 +55,7 @@ client.once('ready', () => {
   console.log(`${client.user.tag} login success!`);
 
   cron.schedule(
-    '46 0 * * *',
+    '55 12 * * *',
     async () => {
       try {
         const channel = await client.channels.fetch(RAID_CHANNEL_ID);
