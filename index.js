@@ -55,7 +55,7 @@ client.once('ready', () => {
   console.log(`${client.user.tag} login success!`);
 
   cron.schedule(
-    '0 1 * * *',
+    '5 1 * * *',
     async () => {
       try {
         const channel = await client.channels.fetch(RAID_CHANNEL_ID);
